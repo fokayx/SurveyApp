@@ -1,5 +1,7 @@
-Rails.application.routes.draw do
-  resources :surveys
+SurveyApp::Application.routes.draw do
+  resources :surveys do
+    get 'answers', on: :member
+  end
   resources :participants
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
