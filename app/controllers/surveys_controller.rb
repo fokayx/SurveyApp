@@ -61,6 +61,11 @@ class SurveysController < ApplicationController
     end
   end
 
+  def answers
+    @participants = Participant.all
+    @questions = @survey.questions
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
@@ -69,6 +74,9 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name)
+      params.require(:survey).permit(:name,
+        :questions_attributes => [:id, :content,
+          :answers_attributes => [:id, :contetn, :participant_id]
+      ])
     end
 end
