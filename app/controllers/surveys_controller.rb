@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :answers]
 
   # GET /surveys
   # GET /surveys.json
@@ -15,8 +15,8 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   def new
     @survey = Survey.new
-  end
 
+  end
   # GET /surveys/1/edit
   def edit
   end
@@ -40,6 +40,8 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
+   # render text:params
+   # return
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
@@ -76,7 +78,7 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:name,
         :questions_attributes => [:id, :content,
-          :answers_attributes => [:id, :contetn, :participant_id]
+          :answers_attributes => [:id, :content, :participant_id]
       ])
     end
 end

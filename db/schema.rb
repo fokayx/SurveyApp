@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413023933) do
+ActiveRecord::Schema.define(version: 20150413043815) do
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "quetion_id"
+    t.integer  "question_id"
     t.integer  "participant_id"
     t.text     "content"
     t.datetime "created_at",     null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150413023933) do
   end
 
   add_index "answers", ["participant_id"], name: "index_answers_on_participant_id"
-  add_index "answers", ["quetion_id"], name: "index_answers_on_quetion_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "participants", force: :cascade do |t|
     t.string   "name"
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 20150413023933) do
 
   create_table "questions", force: :cascade do |t|
     t.text     "content"
-    t.integer  "survery_id"
+    t.integer  "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "questions", ["survery_id"], name: "index_questions_on_survery_id"
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id"
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"

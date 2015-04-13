@@ -1,4 +1,4 @@
-<h1><%= @survey.name %> Answers</h1>
+<h1><%= @survey.name %> </h1>
 
 <%= form_for(@survey) do |f|%>
   <% @participants.each do |participant| %>
@@ -15,10 +15,10 @@
           <tr>
             <td><%= question.content %></td>
             <td>
-              <%= f.fields_for :questions, questions do |q| %>
-                <%= q.fields_for :answers, question.answers.find_forinitialize_by(participant: participant) do |a| %>
+              <%= f.fields_for :questions, question do |q| %>
+                <%= q.fields_for :answers, question.answers.find_or_initialize_by(participant: participant) do |a| %>
                   <%= a.text_area :content %>
-                  <%= a.hidden_field :participant_id, participant.id %>
+                  <%= a.hidden_field :participant_id %>
                 <% end %>
               <% end %>
             </td>
@@ -27,7 +27,7 @@
       </tbody>
     </table>
   <% end %>
-  <div class="action">
+  <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

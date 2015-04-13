@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  belongs_to :survery
+  belongs_to :survey
   has_many :answers
   has_many :participants, through: :answers
 
