@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :participants, through: :answers
 
-  accepts_nested_attributes_for :answers
+  accepts_nested_attributes_for :answers, allow_destroy: true
 end
 
 class Answer < ActiveRecord::Base

@@ -1,4 +1,5 @@
 SurveyApp::Application.routes.draw do
+  root 'surveys#index'
   resources :surveys do
     get 'answers', on: :member
     get 'questions', on: :member

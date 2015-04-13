@@ -11,16 +11,26 @@
         <% @questions.each do |question| %>
           <tr>
             <td>
-              <%= f.fields_for :questions,question do |q| %>
-                Question: <%= q.text_field :content %>
+              <%= f.fields_for :questions, question do |q| %>
+                Question: <%= q.text_field :content %> | 
+                <%= q.check_box :_destroy %> 刪除, delete
               <% end %>
             </td>
           </tr>
         <% end %>
+        <tr>
+          <td>
+            <%= f.fields_for :questions, @questions.new do |new| %>
+              Add New Question:  <%= new.text_field :content %> | 
+            <%= new.check_box :_destroy %> 不新增, nothing new
+          <% end %>
+          </td>
+        </tr>
       </tbody>
     </table>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> |
+    <%= link_to 'back', :back %>
   </div>
 <% end %>
 
