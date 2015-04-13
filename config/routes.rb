@@ -1,6 +1,7 @@
 SurveyApp::Application.routes.draw do
   resources :surveys do
     get 'answers', on: :member
+    get 'questions', on: :member
   end
   resources :participants
   # The priority is based upon order of creation: first created -> highest priority.

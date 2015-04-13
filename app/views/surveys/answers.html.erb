@@ -2,7 +2,7 @@
 
 <%= form_for(@survey) do |f|%>
   <% @participants.each do |participant| %>
-    <h3><%= participant.name %></h3>
+    <h3>Participant: <%= participant.name %></h3>
     <table>
       <thead>
         <tr>

@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:show, :edit, :update, :destroy, :answers]
+  before_action :set_survey, only: [:show, :edit, :update, :destroy, :answers, :questions]
 
   # GET /surveys
   # GET /surveys.json
@@ -40,8 +40,8 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
   def update
-   # render text:params
-   # return
+  #  render text:params
+  #  return
     respond_to do |format|
       if @survey.update(survey_params)
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
@@ -63,6 +63,11 @@ class SurveysController < ApplicationController
     end
   end
 
+  def questions
+    @participants = Participant.all
+    @questions = @survey.questions
+  end
+
   def answers
     @participants = Participant.all
     @questions = @survey.questions
@@ -73,6 +78,7 @@ class SurveysController < ApplicationController
     def set_survey
       @survey = Survey.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
